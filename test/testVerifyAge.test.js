@@ -7,7 +7,6 @@ require("dotenv").config();
 /**
  * Check root claim and revoke before verify
  */
-
 const main = async () => {
     const path = "test/example_inputs/age/";
 

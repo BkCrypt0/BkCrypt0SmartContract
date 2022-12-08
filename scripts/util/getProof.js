@@ -14,9 +14,9 @@ const getProofAge = async (pathInput, pathProof) => {
     const inputAgeJson = JSON.parse(fs.readFileSync(pathInput).toString());
     const proofAgeJson = JSON.parse(fs.readFileSync(pathProof).toString());
     const proofAgeData = {
-        a: proofAgeJson.pi_a.slice(0, 2).map(e => numToHex(e)),
-        b: proofAgeJson.pi_b.slice(0, 2).map(e => e.reverse().map(e1 => numToHex(e1))),
-        c: proofAgeJson.pi_c.slice(0, 2).map(e => numToHex(e))
+        a: proofAgeJson.pi_a.slice(0, 2),
+        b: proofAgeJson.pi_b.slice(0, 2).map(e => e.reverse()),
+        c: proofAgeJson.pi_c.slice(0, 2)
     };
 
     const inputProof = {
@@ -24,7 +24,7 @@ const getProofAge = async (pathInput, pathProof) => {
         pi_a: proofAgeData.a,
         pi_b: proofAgeData.b,
         pi_c: proofAgeData.c,
-        input: inputAgeJson.map(e => '0x' + BigInt(e).toString("16"))
+        input: inputAgeJson
     };
     return inputProof;
 }
@@ -34,9 +34,9 @@ const getProofPlace = async (pathInput, pathProof) => {
     const inputPlaceJson = JSON.parse(fs.readFileSync(pathInput).toString());
     const proofPlaceJson = JSON.parse(fs.readFileSync(pathProof).toString());
     const proofPlaceData = {
-        a: proofPlaceJson.pi_a.slice(0, 2).map(e => numToHex(e)),
-        b: proofPlaceJson.pi_b.slice(0, 2).map(e => e.reverse().map(e1 => numToHex(e1))),
-        c: proofPlaceJson.pi_c.slice(0, 2).map(e => numToHex(e)),
+        a: proofPlaceJson.pi_a.slice(0, 2),
+        b: proofPlaceJson.pi_b.slice(0, 2).map(e => e.reverse()),
+        c: proofPlaceJson.pi_c.slice(0, 2),
     };
 
     const inputProof = {
@@ -44,7 +44,7 @@ const getProofPlace = async (pathInput, pathProof) => {
         pi_a: proofPlaceData.a,
         pi_b: proofPlaceData.b,
         pi_c: proofPlaceData.c,
-        input: inputPlaceJson.map(e => '0x' + BigInt(e).toString("16"))
+        input: inputPlaceJson
     };
     return inputProof;
 }
@@ -55,10 +55,11 @@ const getProofClaim = async (pathInput, pathProof) => {
     const proofClaimJson = JSON.parse(fs.readFileSync(pathProof).toString());
 
     const inputProof = {
-        pi_a: proofClaimJson.pi_a.slice(0, 2).map(e => numToHex(e)),
-        pi_b: proofClaimJson.pi_b.slice(0, 2).map(e => e.reverse().map(e1 => numToHex(e1))),
-        pi_c: proofClaimJson.pi_c.slice(0, 2).map(e => numToHex(e)),
-        input: inputClaimJson.map(e => '0x' + BigInt(e).toString("16"))
+        optionName: `VERIFIER_CLAIM_${(inputClaimJson.length - 1)/2}`,
+        pi_a: proofClaimJson.pi_a.slice(0, 2),
+        pi_b: proofClaimJson.pi_b.slice(0, 2).map(e => e.reverse()),
+        pi_c: proofClaimJson.pi_c.slice(0, 2),
+        input: inputClaimJson
     };
     return inputProof;
 }
@@ -69,11 +70,27 @@ const getProofRevoke = async (pathInput, pathProof) => {
     const proofRevokeJson = JSON.parse(fs.readFileSync(pathProof).toString());
 
     const inputProof = {
-        pi_a: proofRevokeJson.pi_a.slice(0, 2).map(e => numToHex(e)),
-        pi_b: proofRevokeJson.pi_b.slice(0, 2).map(e => e.reverse().map(e1 => numToHex(e1))),
-        pi_c: proofRevokeJson.pi_c.slice(0, 2).map(e => numToHex(e)),
-        input: inputRevokeJson.map(e => '0x' + BigInt(e).toString("16"))
+        optionName: `VERIFIER_REVOKE_${(inputRevokeJson.length - 1)/2}`,
+        pi_a: proofRevokeJson.pi_a.slice(0, 2),
+        pi_b: proofRevokeJson.pi_b.slice(0, 2).map(e => e.reverse()),
+        pi_c: proofRevokeJson.pi_c.slice(0, 2),
+        input: inputRevokeJson
     };
     return inputProof;
 }
 exports.getProofRevoke = getProofRevoke;
+
+const getProofUnrevoke = async (pathInput, pathProof) => {
+    const inputUnrevokeJson = JSON.parse(fs.readFileSync(pathInput).toString());
+    const proofUnrevokeJson = JSON.parse(fs.readFileSync(pathProof).toString());
+
+    const inputProof = {
+        optionName: `VERIFIER_UNREVOKE`,
+        pi_a: proofUnrevokeJson.pi_a.slice(0, 2),
+        pi_b: proofUnrevokeJson.pi_b.slice(0, 2).map(e => e.reverse()),
+        pi_c: proofUnrevokeJson.pi_c.slice(0, 2),
+        input: inputUnrevokeJson
+    };
+    return inputProof;
+}
+exports.getProofUnrevoke = getProofUnrevoke;

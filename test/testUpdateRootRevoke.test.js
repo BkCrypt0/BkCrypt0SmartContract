@@ -4,23 +4,19 @@ const {updateRootRevoke } = require("../scripts/sdk/kyc");
 const { setLib_AddressManager } = require("../scripts/sdk/libAddressManager");
 require("dotenv").config();
 
-const main = async () => {
-    const path = "test/example_inputs/revoke/";
-    const InputAgeJson = JSON.parse(fs.readFileSync(path + "inputProof.json").toString());
-    // console.log(InputAgeJson);
-    const addVerifierRevoke = await setLib_AddressManager("VERIFIER_REVOKE", process.env.VERIFIER_REVOKE); 
-    // console.log(addVerifierRevoke);
-
+const updateRoot = async (path) => {
+    let InputAgeJson = JSON.parse(fs.readFileSync(path + "inputProof.json").toString());
+    await setLib_AddressManager("VERIFIER_REVOKE", process.env.VERIFIER_REVOKE); 
     await updateRootRevoke(
         InputAgeJson.pi_a,
         InputAgeJson.pi_b,
         InputAgeJson.pi_c,
         InputAgeJson.input
     );
-
-
-    // const proofInputAgeJson = JSON.parse(fs.readFileSync(path + "inputProof3.json").toString());
-    // console.log(await verifyProof(proofInputAgeJson));
+}
+const main = async () => {
+    await updateRoot("test/example_inputs/revoke/revoke3/");
+    await updateRoot("test/example_inputs/unrevoke/")
 }
 
 main()

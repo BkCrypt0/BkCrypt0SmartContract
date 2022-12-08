@@ -1,9 +1,9 @@
 const fs = require("fs");
-const { getProofRevoke } = require("../scripts/util/getProof");
+const {getProofUnrevoke } = require("../scripts/util/getProof");
 
 const main = async () => {
-    const path = "test/example_inputs/revoke/revoke3/";
-    const inputProof = await getProofRevoke(path + "public.json", path + "proof.json", 60 * 60 * 24);
+    const path = "test/example_inputs/unrevoke/";
+    const inputProof = await getProofUnrevoke(path + "public.json", path + "proof.json", 60 * 60 * 24);
 
     const json = JSON.stringify(inputProof, null, 2);
 

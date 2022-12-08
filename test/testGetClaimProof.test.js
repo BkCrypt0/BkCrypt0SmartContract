@@ -2,7 +2,7 @@ const fs = require("fs");
 const { getProofClaim } = require("../scripts/util/getProof");
 
 const main = async () => {
-    const path = "test/example_inputs/claim/";
+    const path = "test/example_inputs/claim/claim10/";
     const inputProof = await getProofClaim(path + "public.json", path + "proof.json", 60 * 60 * 24);
 
     const json = JSON.stringify(inputProof, null, 2);
