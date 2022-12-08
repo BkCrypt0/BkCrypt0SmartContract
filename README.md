@@ -8,8 +8,8 @@ This project demonstrates a basic Hardhat use case. It comes with a sample contr
 ### Clone responsitory and setup environment
 
 ```
-$ git clone git@github.com:BkCrypt0/BkCrypto-Contract.git
-$ cd BkCrypto-Contract
+$ git clone https://github.com/BkCrypt0/BkCrypt0SmartContract.git
+$ cd BkCrypt0SmartContract
 $ npm install --save-dev
 ```
 
