@@ -1,7 +1,6 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
 
-import {ISparseMerkleTree} from "./interface/ISparseMerkleTree.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 contract MerkleTreeWithHistory is Initializable {
@@ -25,7 +24,7 @@ contract MerkleTreeWithHistory is Initializable {
         require(_levels > 0, "_levels should be greater than zero");
         require(_levels < 40, "_levels should be less than 40");
         levels = _levels;
-        ROOT_HISTORY_SIZE = 30;
+        ROOT_HISTORY_SIZE = 10;
         currentRootClaimLeaf = 0;
         currentRootRevokeLeaf = 0;
         rootsClaim[currentRootClaimLeaf] = 0;

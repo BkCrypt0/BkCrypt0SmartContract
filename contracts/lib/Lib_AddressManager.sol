@@ -1,9 +1,7 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
 
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
-import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 
 /**
  * @title Lib_AddressManager
@@ -11,9 +9,7 @@ import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/se
  */
 
 contract Lib_AddressManager is
-    OwnableUpgradeable,
-    PausableUpgradeable,
-    ReentrancyGuardUpgradeable
+    OwnableUpgradeable
 {
     address internal deployer;
 
@@ -31,10 +27,7 @@ contract Lib_AddressManager is
 
         deployer = msg.sender;
         // Initialize upgradable OZ contracts
-        __Context_init_unchained(); // Context is a dependency for both Ownable and Pausable
         __Ownable_init_unchained();
-        __Pausable_init_unchained();
-        __ReentrancyGuard_init_unchained();
     }
 
     /*  ╔══════════════════════════════╗
@@ -46,10 +39,10 @@ contract Lib_AddressManager is
      * @param _name name of contract
      * @param _address address of its
      */
-    function setAddress(string memory _name, address _address)
-        external
-        onlyOwner
-    {
+    function setAddress(
+        string memory _name,
+        address _address
+    ) external onlyOwner {
         bytes32 nameHash = _getNameHash(_name);
         addresses[nameHash] = _address;
     }
