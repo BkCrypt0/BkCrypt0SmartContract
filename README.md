@@ -66,17 +66,17 @@ hardhat compile
 **deploy contracts** in the following order
 
 ```
-npx hardhat run scripts/deploy-upgrades/deploy-libAddressManager.js
+hardhat run scripts/deploy-upgrades/deploy-libAddressManager.js
 ```
 
 **save** LibAddressManager address to **.env** file. Then, continues deploying:
 
 ```
-npx hardhat run scripts/deploy-upgrades/deploy-kyc.js
-npx hardhat run scripts/deploy-upgrades/deploy-veriferClaim.js
-npx hardhat run scripts/deploy-upgrades/deploy-veriferRevoke.js
-npx hardhat run scripts/deploy-upgrades/deploy-verifierAge.js
-npx hardhat run scripts/deploy-upgrades/deploy-verfierPlace.js
+hardhat run scripts/deploy-upgrades/deploy-kyc.js
+hardhat run scripts/deploy-upgrades/deploy-veriferClaim.js
+hardhat run scripts/deploy-upgrades/deploy-veriferRevoke.js
+hardhat run scripts/deploy-upgrades/deploy-verifierAge.js
+hardhat run scripts/deploy-upgrades/deploy-verfierPlace.js
 ```
 
 When deploying completed, **save** its address to **.env** file. Then, **set address** for address of **verifer contracts** in contract [Lib_AddressManager](https://github.com/BkCrypt0/BkCrypto-Contract/blob/main/contracts/lib/Lib_AddressManager.sol). You can see example in file [setLibAddressManager](https://github.com/BkCrypt0/BkCrypto-Contract/tree/main/scripts/sdk/examples/setLibAddressManager.js)
@@ -84,8 +84,8 @@ When deploying completed, **save** its address to **.env** file. Then, **set add
 The other contracts is used for [BkCrypt0-Frontend](https://github.com/BkCrypt0/BkCrypt0-Frontend.git). It supply **poseidonHash** and **verifierSparseMerkleTree** function. To **deploy**, run:
 
 ```
-npx hardhat run scripts/deploy-upgrades/deploy-hashPoseidon.js
-npx hardhat run scripts/deploy-upgrades/deploy-sparseMerkleTree.js
+hardhat run scripts/deploy-upgrades/deploy-hashPoseidon.js
+hardhat run scripts/deploy-upgrades/deploy-sparseMerkleTree.js
 ```
 
 ## Update Root
