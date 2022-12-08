@@ -5,12 +5,9 @@ require("dotenv").config();
 
 const main = async () => {
     const verifier = [
-        // "VERIFIER_CLAIM_3", "VERIFIER_CLAIM_10", 
-        // "VERIFIER_REVOEK_1",
-        // "VERIFIER_REVOKE_3", "VERIFIER_REVOKE_10", 
-        "VERIFIER_UNREVOKE",
-        // "VERIFIER_AGE",
-        // "VERIFIER_PLACE"
+        "VERIFIER_CLAIM_3", "VERIFIER_CLAIM_10", 
+        "VERIFIER_REVOKE_3", "VERIFIER_REVOKE_10", 
+        "VERIFIER_UNREVOKE"
     ]
     let setAddress;
     for (let i = 0; i < verifier.length; i++) {

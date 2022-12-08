@@ -9,7 +9,6 @@ const deployVerifierRevoke = async (option) => {
 }
 
 const main = async () => {
-    await deployVerifierRevoke(1);
     await deployVerifierRevoke(3);
     await deployVerifierRevoke(10);
 }
