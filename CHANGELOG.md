@@ -1,3 +1,7 @@
+# Release-final
+- fix: readme
+- fix CHANGLOG
+- update: docs
 # Release-candidate
 - fix: readme
 - fix: test
